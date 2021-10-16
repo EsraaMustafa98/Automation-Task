@@ -9,6 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class UserRegister {
     WebDriver driver;
     Faker faker = new Faker();
@@ -24,13 +26,14 @@ public class UserRegister {
     String AdditionalInformation = faker.hobbit().toString();
     String HomePhone = faker.phoneNumber().cellPhone();
     String MobilePhone = faker.phoneNumber().cellPhone();
-    String AliasAddress = faker.address().streetAddress();
+    String AliasAddress = "Cairo,Egypt";
 
 
     @BeforeClass
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         driver.get("http://automationpractice.com/");
         driver.manage().window().maximize();
@@ -43,44 +46,45 @@ public class UserRegister {
 
     @Test
     public void userRegister() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         WebElement SignInButton = driver.findElement(By.linkText("Sign in"));
         SignInButton.click();
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
 
         WebElement EmailTextBox = driver.findElement(By.id("email_create"));
         EmailTextBox.sendKeys(email);
         System.out.println(email);
-        Thread.sleep(2000);
+       // Thread.sleep(2000);
 
         WebElement CreateAccountButton = driver.findElement(By.name("SubmitCreate"));
         CreateAccountButton.click();
-        Thread.sleep(5000);
+       // Thread.sleep(5000);
 
         WebElement RadioButtonFemale = driver.findElement(By.id("id_gender2"));
         RadioButtonFemale.click();
-        Thread.sleep(2000);
+       // Thread.sleep(2000);
 
         WebElement FirstnameTextBox = driver.findElement(By.name("customer_firstname"));
         FirstnameTextBox.sendKeys(firstname);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement LastnameTextBox = driver.findElement(By.name("customer_lastname"));
         LastnameTextBox.sendKeys(lastName);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement PasswordTextBox = driver.findElement(By.name("passwd"));
         PasswordTextBox.sendKeys(Password);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement DaysDropDown = driver.findElement(By.id("days"));
         Select selectdays = new Select(DaysDropDown);
         selectdays.selectByValue("18");
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
         WebElement MonthsDropDown = driver.findElement(By.id("months"));
         Select selectmonths = new Select(MonthsDropDown);
         selectmonths.selectByIndex(10);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
 
         WebElement YearsDropDown = driver.findElement(By.id("years"));
@@ -89,59 +93,59 @@ public class UserRegister {
 
         WebElement FirstCheckBox = driver.findElement(By.id("uniform-newsletter"));
         FirstCheckBox.click();
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
         WebElement SecondCheckBox = driver.findElement(By.id("uniform-optin"));
         SecondCheckBox.click();
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
-       WebElement CompanyName = driver.findElement(By.id("company"));
+      WebElement CompanyName = driver.findElement(By.id("company"));
        CompanyName.sendKeys(Company);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
 
         WebElement CompanyAddrees = driver.findElement(By.id("address1"));
         CompanyAddrees.sendKeys(Address);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement CompanyAddrees2 = driver.findElement(By.id("address2"));
         CompanyAddrees2.sendKeys(Address2);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
 
         WebElement City = driver.findElement(By.id("city"));
         City.sendKeys(AddressCity);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
 
         WebElement SelectState = driver.findElement(By.id("id_state"));
         Select selectstate = new Select(SelectState);
         selectstate.selectByValue("2");
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement PostalCode = driver.findElement(By.id("postcode"));
         PostalCode.sendKeys(postalCode);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement SelectCountry = driver.findElement(By.id("id_country"));
         Select selectCountry = new Select(SelectCountry) ;
         selectCountry.selectByValue("21");
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement Other = driver.findElement(By.id("other"));
         Other.sendKeys(AdditionalInformation);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement Home = driver.findElement(By.id("phone"));
         Home.sendKeys(HomePhone);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement Phone = driver.findElement(By.name("phone_mobile"));
         Phone.sendKeys(MobilePhone);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement alias = driver.findElement(By.id("alias"));
         alias.sendKeys(AliasAddress);
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         WebElement SubmitAccountButton = driver.findElement(By.id("submitAccount")) ;
        SubmitAccountButton.click();
