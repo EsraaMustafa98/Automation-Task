@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -27,6 +28,7 @@ public class UserRegister {
     String HomePhone = faker.phoneNumber().cellPhone();
     String MobilePhone = faker.phoneNumber().cellPhone();
     String AliasAddress = "Cairo,Egypt";
+
 
 
     @BeforeClass
@@ -146,9 +148,17 @@ public class UserRegister {
 
         WebElement SubmitAccountButton = driver.findElement(By.id("submitAccount")) ;
        SubmitAccountButton.click();
+     WebElement WishListText = driver.findElement(By.linkText("MY WISHLISTS"));
+      // WebElement WishListText = driver.findElement(By.partialLinkText("WishLists"));
+        Assert.assertTrue(WishListText.isDisplayed(),"WishList text is not displayed");
 
        WebElement SignOutButton = driver.findElement(By.xpath("(//a[contains(text(),'Sign out')])[1]"));
        SignOutButton.click();
+       WebElement Authentication = driver.findElement(By.xpath("//div[@id='center_column']/h1"));
+       String ActualText = Authentication.getText();
+       Assert.assertEquals(ActualText,"AUTHENTICATION");
+
+
 
 
     }
