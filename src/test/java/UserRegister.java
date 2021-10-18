@@ -155,8 +155,10 @@ public class UserRegister {
        WebElement SignOutButton = driver.findElement(By.xpath("(//a[contains(text(),'Sign out')])[1]"));
        SignOutButton.click();
        WebElement Authentication = driver.findElement(By.xpath("//div[@id='center_column']/h1"));
-       String ActualText = Authentication.getText();
-       Assert.assertEquals(ActualText,"AUTHENTICATION");
+       Assert.assertTrue(Authentication.isDisplayed());
+
+      // String ActualText = Authentication.getText();
+     //  Assert.assertEquals(ActualText,"AUTHENTICATION");
 
 
 
